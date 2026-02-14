@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>初忆</title>
+<style>
+/* 加载字体 */
+@font-face {
+    font-family: myfont;
+    src: url("cy.ttf");
+}
+
+body {
+    font-family: myfont;
+    font-size: 24px;
+}
+
+  *{margin:0;padding:0;box-sizing:border-box;font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif}
+  html,body{height:100%}
+  body{
+    background:#f8f9fc;
+    color:#1f2937;
+    display:grid;
+    grid-template-rows: auto 1fr auto;
+    min-height:100vh;
+  }
+
+  header{
+    padding:16px 20px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    border-bottom:1px solid #e5e7eb;
+    background:#fff;
+  }
+  .nav-wrap{
+    width:100%;
+    max-width:900px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+  }
+  .logo{
+    font-weight:700;
+    font-size:18px;
+    color:#3730a3;
+  }
+  .menu{
+    display:flex;
+    gap:24px;
+  }
+  .menu a{
+    text-decoration:none;
+    color:#4b5563;
+    font-size:15px;
+    transition:0.2s;
+  }
+  .menu a:hover{
+    color:#3730a3;
+  }
+
+  /* 二次元背景：完整显示+居中+遮罩优化 */
+  .hero {
+    position: relative;
+    width: 100%;
+    height: 320px;
+    border-radius: 20px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.4);
+  }
+  .hero img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -2;
+  }
+  /* 黑色低透遮罩，文字更清晰 */
+  .hero::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.2);
+    z-index: -1;
+  }
+
+  .hero h1{
+    font-size:32px;
+    font-weight:800;
+    margin-bottom:8px;
+  }
+  .hero p{
+    font-size:16px;
+  }
+
+  .cards-section{
+    width:100%;
+    overflow:hidden;
+  }
+  .cards-scroll{
+    display:flex;
+    gap:16px;
+    overflow-x:auto;
+    padding:10px 4px 20px;
+    scroll-snap-type:x mandatory;
+  }
+  .cards-scroll::-webkit-scrollbar{height:6px}
+  .cards-scroll::-webkit-scrollbar-thumb{background:#d1d5db;border-radius:999px}
+  .card{
+    flex:0 0 200px;
+    scroll-snap-align:start;
+    background:#fff;
+    border:1px solid #e5e7eb;
+    border-radius:16px;
+    padding:20px;
+    transition:0.2s;
+  }
+  .card:hover{
+    transform:translateY(-4px);
+    box-shadow:0 10px 25px -5px rgba(0,0,0,0.05);
+    border-color:#d1d5db;
+  }
+  .card h3{
+    font-size:16px;
+    font-weight:600;
+    margin-bottom:8px;
+    color:#1f2937;
+  }
+  .card p{
+    font-size:14px;
+    color:#6b7280;
+    line-height:1.4;
+  }
+
+  .links{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:12px;
+  }
+  .link-item{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:14px 16px;
+    background:#fff;
+    border:1px solid #e5e7eb;
+    border-radius:12px;
+    text-decoration:none;
+    color:#1f2937;
+    transition:0.2s;
+  }
+  .link-item:hover{
+    background:#f3f4f6;
+  }
+  .link-icon{
+    width:24px;
+    height:24px;
+    border-radius:8px;
+    background:#eef2ff;
+    display:grid;
+    place-items:center;
+    color:#3730a3;
+    font-weight:bold;
+    font-size:14px;
+  }
+  .link-text{
+    flex:1;
+  }
+  .link-text strong{
+    display:block;
+    font-size:15px;
+    font-weight:600;
+  }
+  .link-text small{
+    font-size:12px;
+    color:#6b7280;
+  }
+
+  /* 新底部核心样式 */
+  .footer {
+    width: 100%;
+    padding: 40px 20px 24px;
+    background: #fff;
+    border-top: 1px solid #e5e7eb;
+    box-sizing: border-box;
+  }
+  .footer-content {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    justify-content: space-between;
+  }
+  .footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .footer-logo img {
+    width: 48px;
+    height: 48px;
+    border-radius: 8px;
+    background: #eef2ff;
+  }
+  .logo-text h3 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #3730a3;
+    margin-bottom: 4px;
+  }
+  .logo-text p {
+    font-size: 14px;
+    color: #6b7280;
+  }
+  .footer-links {
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+  .link-group h4 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #1f2937;
+    margin-bottom: 12px;
+  }
+  .link-group ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .link-group ul li {
+    margin-bottom: 8px;
+  }
+  .link-group ul li a {
+    text-decoration: none;
+    color: #4b5563;
+    font-size: 14px;
+    transition: color 0.2s;
+  }
+  .link-group ul li a:hover {
+    color: #3730a3;
+  }
+  .footer-bottom {
+    max-width: 900px;
+    margin: 30px auto 0;
+    padding-top: 20px;
+    border-top: 1px solid #e5e7eb;
+    text-align: center;
+    font-size: 14px;
+    color: #9ca3af;
+  }
+
+  /* 悬浮功能按钮(FAB) */
+  .fab-container {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    z-index: 999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+  .fab {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: none;
+    background: #3730a3;
+    color: #fff;
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    transition: all 0.2s;
+    font-size: 20px;
+  }
+  .fab:hover {
+    background: #251f78;
+    transform: translateY(-2px);
+  }
+  .back-to-top {
+    display: none;
+  }
+  .back-to-top.show {
+    display: grid;
+  }
+  .fab-actions {
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .fab-container.active .fab-actions {
+    display: flex;
+  }
+
+  main{
+    width:100%;
+    max-width:900px;
+    margin:0 auto;
+    padding:40px 20px;
+    display:flex;
+    flex-direction:column;
+    gap:32px;
+  }
+
+  /* 移动端适配 */
+  @media(max-width:640px){
+    .hero h1{font-size:24px}
+    .links{grid-template-columns:1fr}
+    .menu{gap:16px}
+    .footer-content {
+      flex-direction: column;
+      gap: 30px;
+    }
+    .footer-links {
+      gap: 20px;
+    }
+    .fab {
+      width: 44px;
+      height: 44px;
+      font-size: 18px;
+    }
+  }
+</style>
+<!-- 引入Material图标字体 -->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<body>
+<header>
+  <div class="nav-wrap">
+    <div class="logo">初忆</div>
+    <div class="menu">
+      <a href="#home">首页</a>
+      <a href="#tools">工具</a>
+      <a href="#links">链接</a>
+      <a href="#about">关于</a>
+    </div>
+  </div>
+</header>
+
+<main id="home">
+  <section class="hero">
+    <img src="https://www.dmoe.cc/random.php" referrerpolicy="no-referrer" alt="二次元背景">
+    <h1>你好，我是初忆</h1>
+    <p>简约而不简单</p>
+  </section>
+
+  <section class="cards-section" id="tools">
+    <div style="margin-bottom:12px;font-size:18px;font-weight:600">实用工具</div>
+    <div class="cards-scroll">
+      <div class="card">
+        <h3>在线搜索</h3>
+        <p>快速跳转百度、谷歌、必应</p>
+      </div>
+      <div class="card">
+        <h3>文本处理</h3>
+        <p>格式化、加密、解密、转换</p>
+      </div>
+      <div class="card">
+        <h3>IP 查询</h3>
+        <p>查看本机 IP 与归属地信息</p>
+      </div>
+      <div class="card">
+        <h3>网速测试</h3>
+        <p>测试延迟、上传、下载速度</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="links">
+    <div style="margin-bottom:12px;font-size:18px;font-weight:600">常用链接</div>
+    <div class="links">
+      <a href="javascript:alert('QQ')" class="link-item">
+        <div class="link-icon">QQ</div>
+        <div class="link-text">
+          <strong>QQ 联系</strong>
+          <small>点击复制</small>
+        </div>
+      </a>
+      <a href="javascript:alert('邮箱')" class="link-item">
+        <div class="link-icon">@</div>
+        <div class="link-text">
+          <strong>电子邮箱</strong>
+          <small>发送邮件</small>
+        </div>
+      </a>
+      <a href="#" class="link-item">
+        <div class="link-icon">Git</div>
+        <div class="link-text">
+          <strong>代码仓库</strong>
+          <small>GitHub / Gitee</small>
+        </div>
+      </a>
+      <a href="#" class="link-item">
+        <div class="link-icon">Web</div>
+        <div class="link-text">
+          <strong>个人网站</strong>
+          <small>访问主站</small>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <section id="about" style="background:#fff;padding:20px;border-radius:16px;border:1px solid #e5e7eb">
+    <div style="margin-bottom:10px;font-size:18px;font-weight:600">关于本站</div>
+    <p style="color:#6b7280;font-size:15px;line-height:1.6">
+      本主页为个人导航主页，提供常用链接、实用工具、实时信息展示。界面设计简洁，响应式布局，支持手机/平板/电脑。
+    </p>
+  </section>
+</main>
+
+<!-- 新底部 -->
+<footer class="footer">
+    <div class="footer-content">
+        <div class="footer-left">
+            <div class="footer-logo">
+                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDgiIGhlaWdodD0iNDgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMjQiIGN5PSIyNCIgcj0iMjQiIGZpbGw9IiNlZWYyZmYiLz48cGF0aCBkPSJNMjQgMTZDMjkuNTIgMTYgMzQgMjAuNDggMzQgMjZDMzQgMzEuNTIgMjkuNTIgMzYgMjQgMzZDMTEuMzAgMzYgMCAyNC43IDAgMjZDMCAyNC43IDExLjMgMzYgMjQgMzZDMTguNDggMzYgMTQgMzEuNTIgMTQgMjZDMTEgMjAgMTUgMTYgMjQgMTZaIiBmaWxsPSIjMzczMGEzIi8+PC9zdmc+" alt="极简主页LOGO">
+                <div class="logo-text">
+                    <h3>初忆</h3>
+                    <p>简约而不简单</p>
+                </div>
+            </div>
+        </div>
+        <div class="footer-right">
+            <div class="footer-links">
+                <div class="link-group">
+                    <h4>站点导航</h4>
+                    <ul>
+                        <li><a href="#home">首页</a></li>
+                        <li><a href="#tools">实用工具</a></li>
+                        <li><a href="#links">常用链接</a></li>
+                        <li><a href="#about">关于本站</a></li>
+                    </ul>
+                </div>
+                <div class="link-group">
+                    <h4>友情链接</h4>
+                    <ul>
+                        <li><a href="https://www.dmoe.cc/" target="_blank">二次元背景</a></li>
+                        <li><a href="#" target="_blank">工具合集</a></li>
+                        <li><a href="#" target="_blank">技术博客</a></li>
+                        <li><a href="#" target="_blank">资源分享</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <div class="footer-info">
+            <p>&copy; 2026 初忆 · All rights reserved</p>
+        </div>
+    </div>
+</footer>
+
+<!-- 悬浮功能按钮：返回顶部+设置 -->
+<div class="fab-container">
+    <button class="fab back-to-top" title="返回顶部">
+        <span class="material-icons">keyboard_arrow_up</span>
+    </button>
+    <button class="fab main-fab" title="功能设置">
+        <span class="material-icons">settings</span>
+    </button>
+    <div class="fab-actions">
+        <button class="fab action-fab" title="刷新背景">
+            <span class="material-icons">image_refresh</span>
+        </button>
+        <button class="fab action-fab" title="关于我">
+            <span class="material-icons">person</span>
+        </button>
+        <button class="fab action-fab" title="收藏本站">
+            <span class="material-icons">star</span>
+        </button>
+    </div>
+</div>
+
+<!-- 核心交互JS：返回顶部、悬浮按钮、刷新背景 -->
+<script>
+  // 返回顶部
+  const backToTop = document.querySelector('.back-to-top');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 300) {
+      backToTop.classList.add('show');
+    } else {
+      backToTop.classList.remove('show');
+    }
+  });
+  backToTop.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  // 悬浮设置按钮展开/收起
+  const mainFab = document.querySelector('.main-fab');
+  const fabContainer = document.querySelector('.fab-container');
+  mainFab.addEventListener('click', () => {
+    fabContainer.classList.toggle('active');
+  });
+  // 点击外部收起悬浮按钮
+  document.addEventListener('click', (e) => {
+    if (!fabContainer.contains(e.target)) {
+      fabContainer.classList.remove('active');
+    }
+  });
+
+  // 刷新二次元背景
+  const refreshBg = document.querySelector('.action-fab[title="刷新背景"]');
+  const heroImg = document.querySelector('.hero img');
+  refreshBg.addEventListener('click', () => {
+    heroImg.src = `https://www.dmoe.cc/random.php?ts=${new Date().getTime()}`;
+    fabContainer.classList.remove('active');
+  });
+
+  // 收藏本站
+  const collectBtn = document.querySelector('.action-fab[title="收藏本站"]');
+  collectBtn.addEventListener('click', () => {
+    if (window.sidebar && window.sidebar.addPanel) {
+      window.sidebar.addPanel(document.title, window.location.href, "");
+    } else if (window.external && ('AddFavorite' in window.external)) {
+      window.external.AddFavorite(window.location.href, document.title);
+    } else if (document.all) {
+      window.location.href = 'javascript:window.external.AddFavorite("' + window.location.href + '","' + document.title + '")';
+    } else {
+      alert('请按 Ctrl+D 收藏本站！');
+    }
+    fabContainer.classList.remove('active');
+  });
+
+  // 关于我按钮
+  const aboutBtn = document.querySelector('.action-fab[title="关于我"]');
+  aboutBtn.addEventListener('click', () => {
+    document.querySelector('#about').scrollIntoView({ behavior: 'smooth' });
+    fabContainer.classList.remove('active');
+  });
+</script>
+</body>
+</html>
